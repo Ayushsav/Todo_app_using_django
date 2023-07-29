@@ -16,40 +16,30 @@
 </head>
 
 <body>
-    
+
     <div class="signup-login">
-       
         <div class=" signup-box scr">
-            <div class="heads">
-            <!-- <div class="ancaa" title=""><i class="fa-solid fa-user"></i> </div> -->
-            <div class="heading">Get Things Done? </div>
-            <div class="anca"><a href="{% url 'signout' %}" class="sign"><i class="fa-solid fa-right-from-bracket"></i></a></div></div>
-            
-            
+            <div class="heading">Get Things Done?</div>
             <form method="post">
                 {% csrf_token %}
-                <input type="text" name="title" required class="todo-input inp" placeholder="What is the task today?">
-               
+                <input type="text" name="title" required class="todo-input inp" placeholder="What is the task today?"
+                    value="{{obj.title}}">
 
-                <input class="submit-button" type="submit" value="Add Task">
+
+                <input class="submit-button" type="submit" value="Update Task">
 
             </form>
 
             {% for todo in res %}
-            <div class="Todo clickable-div {% if todo.status %}todo-green{% else %}todo-red{% endif %}" >
-                <form method="post" action="">
-                    {% csrf_token %}
+            <div class="Todo clickable-div {% if todo.status %}todo-green{% else %}todo-red{% endif %}">
+                <h5>{{todo.srno}}</h5>
+                <p>{{todo.title}}</p>
 
-                    <!-- <h5><input name="status"required type="submit" {% if todo.status %} checked {% endif %}></h5> -->
-                </form>
-                
-                <p class="{% if todo.status %} completed {% endif %} ">{{todo.title}}</p>
-            
 
 
 
                 <div>
-                    <a href=" /edit_todo/{{todo.srno}} "><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
                     <a href=" /delete_todo/{{todo.srno}} "><i class="fa-solid fa-trash"></i></a>
 
                     </i>
